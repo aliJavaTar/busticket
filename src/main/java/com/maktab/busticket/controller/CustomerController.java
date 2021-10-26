@@ -1,41 +1,67 @@
-//package com.maktab.busticket.controller;
-//
-//import com.maktab.busticket.entity.Customer;
-//import com.maktab.busticket.service.CustomerService;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.validation.BindingResult;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PostMapping;
-//
-//import javax.validation.Valid;
-//
-//@Controller
-//public class CustomerController {
-//
+package com.maktab.busticket.controller;
+
+import com.maktab.busticket.entity.Customer;
+import com.maktab.busticket.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class CustomerController {
+
+//    @GetMapping("/sign-up")
+//    public String sign_up(){
+//        return "sign-up";
+//    }
+    @GetMapping("/sign-up")
+    public String signup(Model model)
+    {
+        model.addAttribute("username",new Customer());
+        return "sign-up";
+    }
+
+
+
+
+
+
+
+    @PostMapping("/login")
+    public String login(Model model)
+    {
+        model.addAttribute("password",new Customer());
+        return "login";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //    @Autowired
 //    private CustomerService customerService;
 //
-//    @GetMapping("/sing-up")
-//    public String display(Customer customer) {
-//        return "sing-up";
+//    @GetMapping ("/sign-up")
+//    public String signUp(){
+//        return "sign-up";
 //    }
-//
-//    @PostMapping("/add-customer")
-//    public String addCustomer(@Valid Customer customer, BindingResult result, Model model) {
-//        if (result.hasErrors()) {
-//            return "add-user";
-//        }
+//    @PostMapping("/addCustomer")
+//    public String addCustomer(Customer customer){
 //        customerService.addCustomer(customer);
-//        return "redirect:/index";
+//        return "redirect:/sign-up";
 //    }
-//
-////    @GetMapping("/index")
-////    public String showUsers(Model model) {
-////        List<User> users = userService.showAllUser();
-////        model.addAttribute("users", users);
-////        return "index";
-////    }
-
-//}
+}

@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = Customer.TABLE_NAME)
+@Table(name = Ticket.TABLE_NAME)
 public class Ticket extends BaseEntity<Long> {
     protected final static String TABLE_NAME = "tickets";
     @ManyToOne()

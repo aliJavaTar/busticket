@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -14,6 +16,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@NotBlank
+@NotNull
 @Table(name = Customer.TABLE_NAME)
 public class Customer extends BaseEntity<Long> {
     private static final String USER_NAME = "username";
@@ -36,6 +40,11 @@ public class Customer extends BaseEntity<Long> {
 
     @Column(name = PASSWORD, nullable = false)
     private String password;
+
+    public Customer(@NotBlank String username, @NotBlank String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<Ticket> ticket;
