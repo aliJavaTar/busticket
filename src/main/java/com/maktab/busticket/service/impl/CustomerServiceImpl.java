@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
-    @Autowired
+
     private CustomerRepository customerRepository;
+    @Autowired
+    public CustomerServiceImpl(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     @Override
     public Customer findByUserNameAndPassword(String username, String password) {
@@ -21,10 +25,6 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer addCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
-//    @Override
-//    public Customer update(Customer customer) {
-//        return customerRepository.update(customer);
-//    }
 
     @Override
     public void delete(Customer customer) {

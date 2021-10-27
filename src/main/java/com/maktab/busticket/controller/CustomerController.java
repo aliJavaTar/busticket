@@ -12,29 +12,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CustomerController {
 
-//    @GetMapping("/sign-up")
-//    public String sign_up(){
-//        return "sign-up";
-//    }
     @GetMapping("/sign-up")
     public String signup(Model model)
     {
         model.addAttribute("username",new Customer());
         return "sign-up";
     }
-
-
-
-
-
-
-
-    @PostMapping("/login")
-    public String login(Model model)
+    @GetMapping("/")
+    public String index()
     {
-        model.addAttribute("password",new Customer());
-        return "login";
+        return "first";
     }
+
+//    @PostMapping("/login")
+//    public String login(Model model)
+//    {
+//        model.addAttribute("password",new Customer());
+//        return "login";
+//    }
 
 
 

@@ -1,12 +1,15 @@
 package com.maktab.busticket.entity;
 
-import com.maktab.busticket.entity.base.BaseEntity;
+import com.maktab.busticket.entity.base.BaseUser;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -15,38 +18,23 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @NotBlank
 @NotNull
 @Table(name = Customer.TABLE_NAME)
-public class Customer extends BaseEntity<Long> {
-    private static final String USER_NAME = "username";
-    private static final String PASSWORD = "password";
-    private static final String EMAIL = "email";
+public class Customer extends BaseUser {
     protected static final String TABLE_NAME = "customers";
 
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-    private int age;
-    private String gender;
-    private boolean admin;
-
-    @Column(name = EMAIL, nullable = false, unique = true)
-    private String email;
-
-    @Column(name = USER_NAME, nullable = false, unique = true)
-    private String username;
-
-    @Column(name = PASSWORD, nullable = false)
-    private String password;
-
-    public Customer(@NotBlank String username, @NotBlank String password) {
-        this.username = username;
-        this.password = password;
+    public Customer(String firstName, String lastName, String phoneNumber, int age, String gender,
+                    String email, String username, String password, List<Ticket> ticket) {
+        super(firstName, lastName, phoneNumber, age, gender, email, username, password);
+        this.ticket = ticket;
     }
 
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    public Customer(List<Ticket> ticket) {
+        this.ticket = ticket;
+    }
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Ticket> ticket;
 
 }

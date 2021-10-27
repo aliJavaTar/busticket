@@ -7,7 +7,6 @@ public interface CustomerService {
 
     Customer addCustomer(Customer customer);
 
-  //  Customer update(Customer customer);
 
     void delete(Customer customer);
 }
